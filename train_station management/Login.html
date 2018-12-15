@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<style>
+		html{
+			height: 100%;
+			margin: 0px;
+			padding: 0px;
+		}
+		body{
+			height: 100%;
+			margin: 0px;
+			padding: 0px;
+			background: url(img/sky.png); 
+			background-repeat: no-repeat;
+    		background-attachment:fixed;
+    		overflow:hidden;   /*若不加该样式，会导致出现滚动条，因为毗邻的元素会共享margin 下面#main中的margin会加到body中来*/
+    		/*background-position: center center; */
+    		background-size: 100% 100%;		
+		}
+		#main{
+			width: 35%;
+			height: 68.5%;
+			margin:50px auto;
+			border-radius: 15px 100px;
+			background: linear-gradient(to right bottom,rgba(90,124,221,.8),rgba(99,164,230,.6));
+		}
+		#main .font{
+			display: block;
+			margin: 0 auto;
+			padding-top: 50px;
+			padding-bottom: 30px;
+		}
+		#main .input{
+			width: 320px;
+			height: 53px;
+			padding: 0 10px;
+			margin: 30px auto;
+			background: white;
+			line-height: 51px;
+			border-radius: 5px;
+		}
+		#main .input .icon{
+			width: 30px;
+			height: 30px;
+			vertical-align: middle;
+		}
+		#main .input .inputText{
+			font-size: 18px;
+			width: 80%;
+			text-align: center;
+			line-height: 30px;
+			border-style: none;
+			outline: none;
+			color: #6495ED;
+			vertical-align: middle;
+		}
+		#main .input .inputText::-webkit-input-placeholder{color: #6495ED;opacity: .6}
+		#main .input .inputText:-ms-input-placeholder{color: #6495ED;opacity: .6} 
+		#main .input .inputText::-moz-placeholder{opacity: .6}  
+		#main .input .inputText：-moz-placeholder{opacity: .6}  
+		
+		#main #button{
+			/*-webkit-appearance: none;
+			-moz-appearance: none;
+			-ms-appearance: none;
+			appearance: none;*/
+			background: none;
+			border: none;
+			outline: none;
+			
+			display: block;
+			width: 104px;
+			height: 121px;
+			background-image: url(img/check.png);
+			margin: 0 auto;
+		}
+		#main #button:hover{background-image: url(img/check_hover.png);}
+		#main #button:active{background-image: url(img/check_active.png);}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<img src="img/font.png" class="font">
+		<form action="train_station_log.php" method="post">
+			<div class="input">
+				<img src="img/username_icon.png" class="icon">
+				<input type="text" name="name" placeholder="username" class="inputText">
+			</div>
+			<div class="input">
+				<img src="img/password_icon.png" class="icon">
+				<input type="password" name="password" placeholder="password" class="inputText">
+			</div>
+			<input type="submit" name="submit" id="button" value="">
+		</form>
+	</div>
+</body>
+</html>
