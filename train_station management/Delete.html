@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Return</title>
+	<style>
+		html{
+			height: 100%;
+		}
+		body{
+			background: url(img/station2.jpg) no-repeat;
+			height: 100%;
+			overflow: hidden;
+			background-size: 100% 100%;
+
+		}
+		#main{
+			margin: 9% auto;
+			width: 30%;
+			height: 55%;
+			background-color: rgba(230,230,230,.7);
+			border-radius: 8px;
+			overflow: hidden;
+		}
+		#main .font{
+			display: block;
+			margin: 0 auto;
+			padding-top: 10%;
+			padding-bottom: 5%;  
+		}
+		#main #form .inputText{
+			display: block;
+			font-size: 18px;
+			color: #333;
+			width: 60%;
+			text-align: center;
+			line-height: 30px;
+			border-style: none;
+			border-radius: 5px;
+			outline: none;
+			vertical-align: middle;
+			margin: 5% auto;
+			opacity: .75;
+		}
+		#main #form{
+			height: 100%;
+		}
+		#main #form #button{
+			background: none;
+			border: none;
+			outline: none;
+			
+			display: block;
+			width: 25%;
+			height: 20%;
+			background-image: url(img/check.png) /*no-repeat*/;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 70%;
+			margin: 0 auto;
+		}
+		#main #form #button:hover{background-image: url(img/check_hover.png);}
+		#main #form #button:active{background-image: url(img/check_active.png);}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<img src="img/fontReturn.png" alt="" class="font">
+		<form action="train_station_delete.php" method="post" id="form">
+			<input type="text" class="inputText" name='name' placeholder="姓名">
+			<input type="text" class="inputText" name='train' placeholder="车次">
+			<input type="text" class="inputText" name='seat' placeholder="座位号">
+			<input type="submit" name="submit" id="button" value="">
+		</form>
+	</div>
+</body>
+</html>
