@@ -33,6 +33,7 @@
 			}
 		}
 		$stmt->free_result(); //释放结果集
+		echo "<a href=\"AfterLogin.html\">Back to homepage</a>";
 		$db->close(); //关闭数据库连接
 	?>
 </body>
