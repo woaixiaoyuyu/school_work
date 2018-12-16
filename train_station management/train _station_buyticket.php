@@ -39,7 +39,7 @@
 		{
 			$stmt->fetch();
 			$rest=$therest;
-			//查看座位是否有余量
+			//查看车次是否有空闲座位
 			if ($rest==0)
 			{
 				echo "<p>No rest seats</p>";
@@ -48,35 +48,54 @@
 			}
 			else
 			{
-				//更新车次信息
-				$rest=$rest-1;
-				//echo $rest;
-				$query="update Tinfo set therest=? where number=?";
+				$query="select * from k_ticket where number=? and seat=?";
 				$stmt=$db->prepare($query);
-				$stmt->bind_param('ds',$rest,$T_Number);
+				$stmt->bind_Param('ss',$T_Number,$seat);
 				$stmt->execute();
-				//更新车票信息
-				$query="insert into Cus_ticket(name,T_Number,seat,flag) values(?,?,?,1)";
-				$stmt=$db->prepare($query);
-				$stmt->bind_param('sss',$name,$T_Number,$seat);
-				$stmt->execute();
-				if($stmt->affected_rows>0)
+				$stmt->store_result();
+				$stmt->bind_result($number,$seat,$ID);
+				if($stmt->affected_rows==0)
 				{
-					$stmt->fetch();
-					echo "<p>Congratulations on your successful purchase! ".$name."</p>";
-					echo "<h4>Your ticket</h4>
-					Train:&nbsp&nbsp&nbsp&nbsp".$T_Number."<br />
-					Seat:&nbsp&nbsp&nbsp&nbsp".$seat."<br />
-					launch time:&nbsp&nbsp&nbsp&nbsp".$launchtime."</p>";
-					echo "<a href=\"AfterLogin.html\">Back to homepage</a>";
+					echo "<p>Please change a seat! </p>";
+					exit;
 				}
 				else
 				{
-					echo "<p>An error has occured.<br />
-					The ticket was not sold.</p>";
+					//更新车次信息
+					$rest=$rest-1;
+					//echo $rest;
+					$query="update Tinfo set therest=? where number=?";
+					$stmt=$db->prepare($query);
+					$stmt->bind_param('ds',$rest,$T_Number);
+					$stmt->execute();
+					//更新空闲车票信息
+					$query="delete from k_ticket where number=? and seat=?";
+					$stmt=$db->prepare($query);
+					$stmt->bind_param('ss',$T_Number,$seat);
+					$stmt->execute();
+					//更新乘客车票信息
+					$query="insert into Cus_ticket(name,T_Number,seat,flag) values(?,?,?,1)";
+					$stmt=$db->prepare($query);
+					$stmt->bind_param('sss',$name,$T_Number,$seat);
+					$stmt->execute();
+					if($stmt->affected_rows>0)
+					{
+						$stmt->fetch();
+						echo "<p>Congratulations on your successful purchase! ".$name."</p>";
+						echo "<h4>Your ticket</h4>
+						Train:&nbsp&nbsp&nbsp&nbsp".$T_Number."<br />
+						Seat:&nbsp&nbsp&nbsp&nbsp".$seat."<br />
+						launch time:&nbsp&nbsp&nbsp&nbsp".$launchtime."</p>";
+					}
+					else
+					{
+						echo "<p>An error has occured.<br />
+						The ticket was not sold.</p>";
+					}	
 				}
 			}
 		}
+		echo "<a href=\"AfterLogin.html\">Back to homepage</a>";
 		$db->close();
 	?>
 </body>
