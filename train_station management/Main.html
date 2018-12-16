@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>火车站主页面</title>
+	<style>
+		html,body{
+			height: 100%;
+			overflow: hidden;
+			padding: 0;
+			margin:0;
+			background: url(img/yellow.jpg);
+			background-size: 100%,100%;
+		}
+		.font{
+			display: block;
+			margin: 2% auto;
+			padding-bottom: 30px;
+		}
+		#main{
+			margin: 0 auto;
+			border: 2px solid #ccf;
+			border-radius: 10px;
+			width: 40%;
+			height: 50%;
+			position: relative;
+			background:white;
+		}
+		#main .link a{
+			display: block;
+			width: 50%;
+			text-align: center;
+			font-size: 25px;
+			line-height: 35px;
+			margin: 5% auto;
+			transition: font-size .7s,color .7s;
+		}
+		#main .link a:link{color: #FF6EB4;text-decoration: none;}
+		#main .link a:visited{color:#FF6EB4;text-decoration: none; }
+		#main .link a:hover{color: #FF1493;font-size: 35px;}
+		#main .link a:active{color: #FF00FF;}
+
+		#main #gif{
+			width: 15%;
+			display: block;
+			margin: -6% auto;
+			border: 2px solid #ccf;
+		}
+		#main span{			
+			display: block;
+			width: 25%;
+			text-align: center;
+			font-size: 18px;
+			margin: 2px auto;
+			color: rgb(71, 100, 142);
+			text-shadow: rgb(140, 185, 247) 2px 0px 2px;
+		}
+		#main span.top{
+			margin-top: 11%;
+		}
+	</style>
+</head>
+<body>
+	<!-- <h1>火车站售票系统</h1> -->
+	<img src="img/fontMain.png" class="font">
+	<div id="main">
+		<img src="img/bang.gif" id="gif">
+		<span class="top">Do you want to</span>
+		<p class="link login"><a href="Login.html" target="_blank">Login</a></p>
+		<span>or</span>
+		<p class="link"><a href="Register.html" target="_blank">Register</a></p>
+		<span>?</span>
+	</div>
+</body>
+</html>
