@@ -42,16 +42,22 @@
 		$stmt->execute();
 		$stmt->store_result();
 		$stmt->bind_result($therest);
-		
-		if($stmt->affected_rows>0)
+		if($stmt->fetch())
 		{
+			$stmt->free_result();
 			//echo "$T_number";
 			//echo "$changetype";
 			//echo "$changeterm";
-			$query="update Tinfo set ?=? where number=?";//防止SQL注入,用?代替'$changeterm'
+			//var_dump($T_number);
+			//var_dump($changetype);
+			//var_dump($changeterm);
+			//$db->close();
+			//$db =new mysqli('localhost','logging','log','train');
+			$query="update Tinfo set $changetype = ? where number=?";
 			$stmt=$db->prepare($query); //构造一个statement
-			$stmt->bind_Param('sss',$changetype,$changeterm,$T_number); //告诉PHP用什么变量代替?，格式是字符串
-			$stmt->execute(); //运行该查询
+			//var_dump($stmt);
+			$stmt->bind_param('ss',$changeterm,$T_number); 
+			$stmt->execute(); //运行
 			//$stmt->store_result();
 			//$stmt->bind_result($therest);
 			//$stmt->fetch();
@@ -69,6 +75,7 @@
 			echo "<p>No this train! </p>";
 			exit;
 		}
+		echo "<br/><br/>";
 		echo "<a href=\"AfterLogin.html\">Back to homepage</a>";
 		$db->close(); //关闭数据库连接
 	?>
