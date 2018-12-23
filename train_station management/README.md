@@ -1,4 +1,4 @@
-# A train station management systme 
+# A train station management system
 tips:PHP+Mysql
 ## function:
 1.register<br>
